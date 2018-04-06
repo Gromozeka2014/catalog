@@ -1,0 +1,22 @@
+{% extends 'svaha/base.html' %} {% load staticfiles %} {% load bootstrap3 %} {% block menu %}
+<ul class="nav navbar-nav">
+    <li class="active"><a href="{% url 'Profile_list' %}">Каталог</a></li>
+    <li><a href="{% url 'Search' %}">Подбор</a></li>
+    <li><a href="{% url 'SearchPro' %}">Расширенный подбор</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'Profile_add' %}">Добавить анкету</a> </li>
+</ul>
+{% endblock %} {% block content %}
+<form method="POST" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+    <div class="container-fluid">
+        <div class="col-lg-6 col-lg-offset-3">
+            <h1>Редактирование профиля</h1>
+            <div class="form-group">
+                {% csrf_token %} {% bootstrap_form form %} {% buttons %}
+                <button class="save btn btn-success"> Сохранить</button> {% endbuttons %}
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

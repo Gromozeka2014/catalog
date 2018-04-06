@@ -1,0 +1,55 @@
+{% extends 'svaha/base.html' %} {% load staticfiles %} {% load bootstrap3 %} {% block menu %}
+<ul class="nav navbar-nav">
+    <li class="active"><a href="{% url 'Profile_list' %}">Каталог</a></li>
+    <li><a href="{% url 'Search' %}">Подбор</a></li>
+    <li><a href="{% url 'SearchPro' %}">Расширенный подбор</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'Profile_add' %}">Добавить анкету</a> </li>
+</ul>
+{% endblock %} {% block content %}
+<div class="row center-block">
+    <div class="col-lg-8 col-lg-offset-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <h1 align="center"> Каталог клиентов</h1></tr>
+            </thead>
+            <tbody>
+                {% for Profile in Profiles %}
+                <tr>
+                    <th>
+                        <img src={{ Profile.avatar.url }} class="center-block"></th>
+                    <th>
+                        <h2 align="center"><b><a href="{% url 'Profile_detail' pk=Profile.pk %}">{{ Profile.first_name }} </b></a></h2>
+                        <h3 align="left"><b>О себе:</b> {{ Profile.description }}</h3>
+                        <h3 align="left"><b>О партнере:</b> {{ Profile.description_p }}</h3>
+                    </th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item">
+                    {% if Profiles.has_previous %}
+                    <a class="page-link" href=?page={{ Profiles.previous_page_number }} aria-label="<<<">
+                              {% endif %}
+                            <span aria-hidden="true">&laquo;</span>
+                          </a>
+                </li>
+                <li class="page-item disabled"><a class="" href="#">{{ Profiles.number }}
+                            of {{ Profiles.paginator.num_pages }}</a></li>
+                <li class="page-item">
+                    {% if Profiles.has_next %}
+                    <a class="page-link" href=?page={{ Profiles.next_page_number }} aria-label=">>>">
+                              {% endif %}
+                            <span aria-hidden="true">&raquo;</span>
+                          </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+{% endblock %}

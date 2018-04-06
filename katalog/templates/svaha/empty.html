@@ -1,0 +1,22 @@
+{% extends 'svaha/base.html' %} {% load staticfiles %} {% load bootstrap3 %} {% block menu %}
+<ul class="nav navbar-nav">
+    <li class="active"><a href="{% url 'Profile_list' %}">Каталог</a></li>
+    <li><a href="{% url 'Search' %}">Подбор</a></li>
+    <li><a href="{% url 'SearchPro' %}">Расширенный подбор</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'Profile_add' %}">Добавить анкету</a> </li>
+</ul>
+{% endblock %} {% block content %}
+<div class="row center-block">
+    <div class="col-lg-8 col-lg-offset-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <h1 align="center"> По данному запросу людей не найдено</h1></tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

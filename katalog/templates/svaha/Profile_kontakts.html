@@ -1,0 +1,27 @@
+{% extends 'svaha/base.html' %} {% load staticfiles %} {% load bootstrap3 %} {% block menu %}
+<ul class="nav navbar-nav">
+    <li><a href="{% url 'Profile_list' %}">Каталог</a></li>
+    <li><a href="{% url 'Search' %}">Подбор</a></li>
+    <li><a href="{% url 'SearchPro' %}">Расширенный подбор</a></li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'Profile_delete' pk=profile.pk %}">Удалить эту анкету</a> </li>
+    <li><a href="{% url 'Profile_add' %}">Добавить анкету</a> </li>
+</ul>
+{% endblock %} {% block content %}
+<div class="container text-left">
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-0 text-left">
+            <img align="center" src={{ profile.avatar.url }}>
+            <h3><b>О себе: </b>{{profile.description}}</h3>
+            <h3><b>О партнере: </b>{{profile.description_p}}</h3>
+            <a class="btn btn-info btn-xs" href="{% url 'Profile_detail' pk=profile.pk %}"><h3>Анкета</h3></a>
+            <a class="btn btn-info btn-xs" href="{% url 'Profile_edit' pk=profile.pk %}"><h3>Редактировать</h3></a>
+        </div>
+        <div align="center" class="col-md-5">
+            <h1>{{ profile.first_name }} {{ profile.middle_name }} {{ profile.second_name }}</h1>
+            <h3><b>Адрес: </b>{{profile.address}}</h3>
+            <h3><b>E-mail: </b>{{profile.email}}</h3>
+            <h3><b>Телефон:</b>{{profile.phone}}</h3>
+        </div>
+        {% endblock %}
